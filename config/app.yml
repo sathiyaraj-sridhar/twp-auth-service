@@ -1,0 +1,12 @@
+name: "Techie WorkPractice"
+static_url_prefix: "http://static.twp.test/"
+scheme: "http"
+domain: "twp.test"
+auth_microservice:
+    url: "http://auth.twp.test"
+account_microservice:
+    url: "http://account.twp.test"
+chat_microservice:
+    url: "http://chat.twp.test"
+cdn:
+    url: "http://cdn.twp.test"

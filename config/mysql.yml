@@ -1,0 +1,6 @@
+pool_name: "gw_mysql_pool"
+pool_size: 5
+connection_timeout: 1
+host: 10.1.2.5
+user: root
+database: twp

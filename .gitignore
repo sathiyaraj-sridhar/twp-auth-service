@@ -1,0 +1,9 @@
+# Ignores files following a specific pattern.
+**/.DS_Store
+**/venv
+**/*.tar.gz
+**/*.tgz
+**/*.log
+**/*.env
+**/*.pem
+**/*.tmp

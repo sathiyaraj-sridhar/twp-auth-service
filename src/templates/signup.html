@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block navrail %}
+<ul>
+  <li><a href="/">TWP</a></li>
+  <li><a href="/login">Log in</a></li>
+</ul>
+{% end %}
+{% block main %}
+<div class="grid">
+  <div class="grid-col-1 md-grid-col-3 lg-grid-col-4"></div>
+  <div class="grid-col-10 md-grid-col-6 lg-grid-col-4">
+    <h1 class="text-center">Create an account</h1>
+    <form action="/signup" enctype="multipart/form-data" method="POST">
+      {% module xsrf_form_html() %}
+      <input type="text" name="name" placeholder="Enter Full Name" size="16">
+      <input type="email" name="email" placeholder="Enter Email" size="16">
+      <input type="text" name="phone" placeholder="Enter phone number along with country code" size="16">
+      <input type="text" name="username" placeholder="Enter username" size="16">
+      <input type="password" name="password" placeholder="Enter password" size="16">
+      <input type="submit" value="Sign up">
+    </form>
+  </div>
+  <div class="grid-col-1 md-grid-col-3 lg-grid-col-4"></div>
+</div>
+{% end %}
+{% block script %}
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+    let signup = new Auth();
+  });
+</script>
+{% end %}
