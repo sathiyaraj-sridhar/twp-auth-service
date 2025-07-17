@@ -1,0 +1,43 @@
+name: $PROJ-$ENV-$ENV_UNIT
+services:
+  auth:
+    image: $PROJ-$APP:$VERSION-$ENV
+    entrypoint: "/usr/local/bin/supervisord"
+    command: ["-c", "/etc/supervisord.conf"]
+    env_file: "./$ENV-$ENV_UNIT-app.env"
+    depends_on:
+      - mysql
+    configs:
+      - source: auth-supervisord-conf
+        target: /etc/supervisord.conf
+      - source: auth-mysql-conf
+        target: /opt/twp/auth/conf/mysql.yml
+      - source: auth-app-conf
+        target: /opt/twp/auth/conf/app.yml
+    volumes:
+      - auth-log:/opt/twp/auth/log
+      - ./src:/opt/twp/auth/src
+    networks:
+      auth-subnet:
+        ipv4_address: ${AUTH_NODE_01_IP}
+      mysql-external-subnet:
+configs:
+  auth-supervisord-conf:
+    file: ./config/supervisord.conf
+  auth-mysql-conf:
+    file: ./config/mysql.yml
+  auth-app-conf:
+    file: ./config/app.yml
+volumes:
+  auth-log:
+    driver: local
+networks:
+  auth-subnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${AUTH_SUBNET_IP_RANGES}
+  mysql-external-subnet:
+    name: $PROJ-$ENV-${ENV_UNIT}_mysql-subnet
+    external: true
