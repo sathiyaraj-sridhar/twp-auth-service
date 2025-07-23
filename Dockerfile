@@ -35,7 +35,7 @@ WORKDIR /opt/twp/auth
 RUN python3 -m venv venv
 
 # Activate the virtual environment and install dependencies in the same shell
-COPY --from=src requirements.txt .
+COPY requirements.txt .
 RUN bash -c "source venv/bin/activate && pip install -r requirements.txt"
 
 
